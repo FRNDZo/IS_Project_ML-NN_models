@@ -70,14 +70,18 @@ def main():
                 ["Bangkok", "Chiang_Mai", "Phuket", "Khon_Kaen", "Hat_Yai"]
             )
             
-            month = st.slider("เดือน", 1, 12, 1)
-            
+            month_names = ["มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน", 
+               "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"]
+
+            selected_month_name = st.selectbox("เดือน", month_names)
+            month = month_names.index(selected_month_name) + 1  # แปลงชื่อเดือนเป็นตัวเลข (1-12)
+
             season_map = {
                 (12, 1, 2): "Winter", 
                 (3, 4, 5): "Summer",
                 (6, 7, 8, 9, 10, 11): "Rainy"
             }
-            
+
             season = next((s for m_range, s in season_map.items() if month in m_range), "Winter")
             st.write(f"ฤดูกาล: {season}")
             
